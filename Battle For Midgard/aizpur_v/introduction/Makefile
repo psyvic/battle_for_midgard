@@ -5,7 +5,7 @@
 ## Login   <aizpur_v@etna-alternance.net>
 ## 
 ## Started on  Sat Apr  1 07:46:15 2017 AIZPURUA Victor Hugo
-## Last update Wed May 10 11:53:28 2017 AIZPURUA Victor Hugo
+## Last update Wed May 10 15:39:18 2017 AIZPURUA Victor Hugo
 ##
 
 CC =            gcc
@@ -13,6 +13,8 @@ NAME =          sta
 SRC =           introduction.c \
 		get_creature.c \
 		game_params.c \
+		prompt_introduction.c \
+		readline.c \
 
 OBJ =           $(SRC:%.c=%.o)
 CFLAGS =        -W -Wall -ansi -ansi -pedantic -Llibmy_01 -I.

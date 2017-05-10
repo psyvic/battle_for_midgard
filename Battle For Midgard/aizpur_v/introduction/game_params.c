@@ -5,10 +5,10 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 11:45:01 2017 AIZPURUA Victor Hugo
-** Last update Wed May 10 14:06:35 2017 AIZPURUA Victor Hugo
+** Last update Wed May 10 16:56:51 2017 AIZPURUA Victor Hugo
 */
 
-#include                "introduction.h"
+#include                "midgar.h"
 #include		<stdlib.h>
 
 t_matrix		*create_matrix()
