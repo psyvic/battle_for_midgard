@@ -38,6 +38,7 @@ struct			s_matrix
   t_team		*team;
   t_player              *player;
   t_creature		*creature;
+  int			quit;
   
 };
 typedef struct		s_matrix t_matrix;
