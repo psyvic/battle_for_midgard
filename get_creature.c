@@ -5,21 +5,21 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 10:18:08 2017 AIZPURUA Victor Hugo
-** Last update Wed May 10 14:32:52 2017 AIZPURUA Victor Hugo
+** Last update Wed May 10 16:10:06 2017 AIZPURUA Victor Hugo
 */
 #include		<stdlib.h>
 #include		<string.h>
 #include		<time.h>
-#include                "introduction.h"
+#include                "midgar.h"
 
 static t_creature	g_creatures[] =
   {
-    {"Koopa", 1, 10, 10, 20, 20},
-    {"Bob bomb", 1, 10, 10, 20, 20},
-    {"Yoshi", 1, 10, 10, 20, 20},
-    {"Maskas", 1, 10, 10, 20, 20},
-    {"Kucco", 1, 10, 10, 20, 20},
-    {NULL, 0, 0, 0, 0, 0}
+    {"Koopa", 1, 10, 10, 20, 20, NULL, NULL},
+    {"Bob bomb", 1, 10, 10, 20, 20, NULL, NULL},
+    {"Yoshi", 1, 10, 10, 20, 20, NULL, NULL},
+    {"Maskas", 1, 10, 10, 20, 20, NULL, NULL},
+    {"Kucco", 1, 10, 10, 20, 20, NULL, NULL},
+    {NULL, 0, 0, 0, 0, 0, NULL, NULL}
   };
 
 t_creature		*get_creature()
@@ -30,7 +30,7 @@ t_creature		*get_creature()
   rnd = rand() % NBCREA;
   if ((crea = malloc(sizeof(t_creature))) == NULL)
     return (NULL);
-  crea->name = strdup(g_creatures[rnd].name);
+  crea->name = my_strdup(g_creatures[rnd].name);
   if (!crea->name)
     return (NULL);
   crea->lvl = g_creatures[rnd].lvl;
