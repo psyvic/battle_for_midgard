@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 17:47:34 2017 AIZPURUA Victor Hugo
-** Last update Thu May 11 10:52:20 2017 AIZPURUA Victor Hugo
+** Last update Thu May 11 13:22:52 2017 AIZPURUA Victor Hugo
 */
 
 #include	<stdlib.h>
@@ -15,7 +15,7 @@ static const    t_prompt_oob   g_prompt_oob[] = {
   {"team", &team},
   {"choose_monster", &choose_monster},
   {"shop", &prompt_shop},
-  {"lets_fight", &prompt_fight},
+  {"fight", &prompt_fight},
   {"quit", &quit},
   {NULL, NULL}
 };

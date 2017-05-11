@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 11:45:01 2017 AIZPURUA Victor Hugo
-** Last update Thu May 11 12:20:54 2017 AIZPURUA Victor Hugo
+** Last update Thu May 11 13:47:31 2017 AIZPURUA Victor Hugo
 */
 
 #include                "midgar.h"
@@ -26,7 +26,7 @@ t_matrix		*create_matrix()
   matrix->player = NULL;
   matrix->creature = NULL;
   matrix->quit = 0;
-  matrix->quit_shop = 0;
+  matrix->quit_prompt = 0;
   my_putstr("Game mechanics created succesfully!\n");
   return (matrix);
 }
