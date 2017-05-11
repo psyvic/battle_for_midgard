@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 14:12:55 2017 AIZPURUA Victor Hugo
-** Last update Thu May 11 15:56:03 2017 AIZPURUA Victor Hugo
+** Last update Thu May 11 16:28:16 2017 AIZPURUA Victor Hugo
 */
 
 #include	<stdlib.h>
@@ -24,7 +24,6 @@ void		magic_catch_combat(t_matrix *matrix)
   rnd = rand() % matrix->creature->pvmax;
   if (rnd <= matrix->creature->pv)
     {
-    
       matrix->creature = NULL;
       matrix->team->nb_creatures = matrix->team->nb_creatures + 1;
       my_putstr("You captured the ");
@@ -39,24 +38,28 @@ void		magic_catch_combat(t_matrix *matrix)
     }
 }
 
-/*void		add_creature_to_team(t_matrix *matrix, t_creature *creature)
+void		add_creature_to_team(t_matrix *matrix, t_creature *creature)
 {
-  if ((ship->container->first == NULL) && (ship->container->last == NULL))
+  if ((matrix->team->first == NULL) && (matrix->team->last == NULL))
     {
-      ship->container->first = freight;
-      ship->container->last = freight;
-      freight->next = NULL;
+      matrix->team->first = creature;
+      matrix->team->last = creature;
+      creature->next = NULL;
+      matrix->creature = NULL;
     }
   else
     {
-      freight->next = ship->container->first;
-      ship->container->first->prev = freight;
-      ship->container->first = freight;
+      creature->next = matrix->team->first;
+      matrix->team->first->prev = creature;
+      matrix->team->first = creature;
     }
-  freight->prev = NULL;
-  ship->container->nb_elem = ship->container->nb_elem + 1;
+  creature->prev = NULL;
+  matrix->team->nb_creatures = matrix->team->nb_creatures + 1;
+  my_putstr("You captured the ");
+  my_putstr(matrix->team->first->name);
+  my_putstr("\n");
 }
-
+/*
 void		del_freight_to_container(t_ship *ship, t_freight *freight)
 {
   if ((ship->container->first != NULL) && (ship->container->last != NULL))
