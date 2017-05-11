@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 11:45:01 2017 AIZPURUA Victor Hugo
-** Last update Wed May 10 17:13:20 2017 AIZPURUA Victor Hugo
+** Last update Thu May 11 12:20:54 2017 AIZPURUA Victor Hugo
 */
 
 #include                "midgar.h"
@@ -26,6 +26,7 @@ t_matrix		*create_matrix()
   matrix->player = NULL;
   matrix->creature = NULL;
   matrix->quit = 0;
+  matrix->quit_shop = 0;
   my_putstr("Game mechanics created succesfully!\n");
   return (matrix);
 }
@@ -40,6 +41,7 @@ int			create_team(t_matrix *matrix)
   matrix->team = team;
   team->first = NULL;
   team->last = NULL;
+  team->actif = NULL;
   team->nb_creatures = 0;
   return (0);
 }
@@ -55,5 +57,6 @@ int			create_player(t_matrix *matrix)
   player->name = NULL;
   player->money = 420;
   player->magic_box = 5;
+  player->mushroom = 0;
   return (0);
 }

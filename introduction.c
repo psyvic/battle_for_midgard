@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 10:11:23 2017 AIZPURUA Victor Hugo
-** Last update Wed May 10 17:42:17 2017 AIZPURUA Victor Hugo
+** Last update Thu May 11 12:18:05 2017 AIZPURUA Victor Hugo
 */
 
 #include <stdlib.h>
@@ -21,6 +21,10 @@ int main()
   create_team(matrix);
   create_player(matrix);
   matrix->creature = get_creature();
-  capture_prompt(matrix);
+  while (matrix->quit != 1)
+    {
+      capture_prompt(matrix);
+    }
+  /*prompt_oob(matrix); */
   return(0);
 }
