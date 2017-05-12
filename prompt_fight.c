@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 13:19:41 2017 AIZPURUA Victor Hugo
-** Last update Fri May 12 14:21:00 2017 PAREDES Alejandra
+** Last update Fri May 12 17:22:31 2017 AIZPURUA Victor Hugo
 */
 #include	<stdlib.h>
 #include	"midgar.h"
@@ -26,6 +26,7 @@ void		prompt_fight(t_matrix *matrix)
   int           bool;
 
   matrix->creature = get_creature();
+  matrix->creature->pv = 1;
   bool = 0;
   while (bool == 0 && matrix->creature != NULL)
     {
