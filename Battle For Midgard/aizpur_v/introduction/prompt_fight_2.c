@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 14:12:55 2017 AIZPURUA Victor Hugo
-** Last update Fri May 12 15:07:20 2017 AIZPURUA Victor Hugo
+** Last update Fri May 12 17:30:54 2017 AIZPURUA Victor Hugo
 */
 
 #include	<stdlib.h>
@@ -69,7 +69,6 @@ void		add_creature_to_team(t_matrix *matrix, t_creature *creature)
       matrix->team->first = creature;
       matrix->team->last = creature;
       creature->next = NULL;
-      matrix->creature = NULL;
     }
   else
     {
@@ -77,6 +76,7 @@ void		add_creature_to_team(t_matrix *matrix, t_creature *creature)
       matrix->team->first->prev = creature;
       matrix->team->first = creature;
     }
+  matrix->creature = NULL;
   creature->prev = NULL;
   matrix->team->nb_creatures = matrix->team->nb_creatures + 1;
   my_putstr("You captured the ");

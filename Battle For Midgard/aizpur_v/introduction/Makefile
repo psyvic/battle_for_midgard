@@ -1,11 +1,11 @@
-o##
+##
 ## Makefile for Makefile in /home/vic/Desktop/piscine/C/libmy_01
 ## 
 ## Made by AIZPURUA Victor Hugo
 ## Login   <aizpur_v@etna-alternance.net>
-## 
+## 	
 ## Started on  Sat Apr  1 07:46:15 2017 AIZPURUA Victor Hugo
-## Last update Fri May 12 11:19:55 2017 AIZPURUA Victor Hugo
+## Last update Fri May 12 17:14:40 2017 AIZPURUA Victor Hugo
 CC =            colorgcc
 NAME =          sta
 SRC =           main.c			\
@@ -20,6 +20,7 @@ SRC =           main.c			\
 		prompt_fight_2.c 	\
 		enemy.c			\
 		destroy_creatures.c
+
 OBJ =		$(SRC:%.c=%.o)
 CFLAGS =	-W -Wall -Wextra -Werror -ansi -ansi -pedantic -Llibmy_01 -I.
 LDFLAGS =
