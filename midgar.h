@@ -1,8 +1,22 @@
+/*
+** midgar.h for midgar.h in /home/vic/Desktop/piscine/C/midgar/aizpur_v/introduction
+** 
+** Made by AIZPURUA Victor Hugo
+** Login   <aizpur_v@etna-alternance.net>
+** 
+** Started on  Fri May 12 15:19:12 2017 AIZPURUA Victor Hugo
+** Last update Fri May 12 15:19:16 2017 AIZPURUA Victor Hugo
+*/
+
 #ifndef			_MIDGAR_H_
 #define			_MIDGAR_H_
 
 #define                 NBCREA 5
 #define                 CATCH_PROB 3
+#define			RUPEES 31
+#define			MONSTER 2
+#define			GAMBLE 21
+#define			MUSHROOM 11
 
 struct			s_player
 {
@@ -43,7 +57,6 @@ struct			s_matrix
   t_creature		*creature;
   int                   quit;
   int			quit_prompt;
-  
 };
 typedef struct		s_matrix t_matrix;
 
@@ -89,6 +102,7 @@ void			my_putstr_color(const char *color, const char *str);
 int			my_strcmp(char *s1, char *s2);
 void			my_put_nbr(int n);
 char			*my_strdup(const char *str);
+int			my_getnbr(char *str);
 t_matrix                *create_matrix();
 int	                create_team(t_matrix *matrix);
 int		        create_player(t_matrix *matrix);
@@ -101,7 +115,9 @@ void			quit(t_matrix *matrix);
 void			prompt_oob(t_matrix *matrix);
 void			prompt_oob_cont(t_matrix *matrix, char *command);
 void			team(t_matrix *matrix);
+void			team_cont(t_matrix *matrix);
 void			choose_monster(t_matrix *matrix);
+void			mushroom(t_matrix *matrix);
 void			prompt_fight(t_matrix *matrix);
 void			prompt_fight_cont(t_matrix *matrix, char *command);
 void			prompt_shop(t_matrix *matrix);
@@ -116,8 +132,13 @@ void			rest(t_matrix *matrix);
 void			magic_catch_combat(t_matrix *matrix);
 /*int			magic_catch_combat_prob(t_matrix *matrix);*/
 void			run(t_matrix *matrix);
+void			add_creature_to_team(t_matrix *matrix, t_creature *creature);
+void			destroy_creature(t_matrix *matrix);
+void			enemy_defeated(t_matrix *matrix);
+void			del_creature_from_team(t_matrix *matrix);
+void			del_prob(t_matrix *matrix);
 void			enemy_attack(t_matrix *);
 
 
 
-#endif
+#endif			/* !_MIDGAR_H_ */

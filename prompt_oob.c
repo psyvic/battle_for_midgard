@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 17:47:34 2017 AIZPURUA Victor Hugo
-** Last update Thu May 11 13:22:52 2017 AIZPURUA Victor Hugo
+** Last update Fri May 12 14:34:56 2017 AIZPURUA Victor Hugo
 */
 
 #include	<stdlib.h>
@@ -14,6 +14,7 @@
 static const    t_prompt_oob   g_prompt_oob[] = {
   {"team", &team},
   {"choose_monster", &choose_monster},
+  {"mushroom", &mushroom},
   {"shop", &prompt_shop},
   {"fight", &prompt_fight},
   {"quit", &quit},
@@ -60,14 +61,29 @@ void		prompt_oob_cont(t_matrix *matrix, char *command)
 
 void		team(t_matrix *matrix)
 {
-  t_creature	*temp;
+  if (matrix->team->first == NULL)
+    {
+      my_putstr("You dont have any monsters on your team\n");
+      return;
+    }
+  team_cont(matrix);
+}
 
+void		team_cont(t_matrix *matrix)
+{
+  t_creature	*temp;
+  int		team_number;
+
+  team_number = 1;
   temp = matrix->team->first;
   while (temp != NULL)
     {
-      my_putstr("Creature name: ");
+      my_put_nbr(team_number);
+      my_putstr("\n Creature name: ");
       my_putstr(temp->name);
-      my_putstr("\nLevel: ");
+      if (temp == matrix->team->actif)
+	my_putstr(" (Chosen monster)");
+      my_putstr("\n Level: ");
       my_put_nbr(temp->lvl);
       my_putstr("\n Health Points (HP): ");
       my_put_nbr(temp->pv);
@@ -75,5 +91,32 @@ void		team(t_matrix *matrix)
       my_put_nbr(temp->pm);
       my_putstr("\n\n");
       temp = temp->next;
+      team_number = team_number + 1;
     }
+}
+
+void            choose_monster(t_matrix *matrix)
+{
+  t_creature	*temp;
+  int		i;
+  int		choice;
+
+  i = 1;
+  my_put_nbr(matrix->team->nb_creatures);
+  my_putstr("\n\n");
+  team(matrix);
+  my_putstr("Which monster do you want to choose? Pick a number ~> ");
+  choice = my_getnbr(readLine());
+  if (choice > matrix->team->nb_creatures)
+    {
+      my_putstr("The monster member doesnt exist\n");
+      return;
+    }
+  temp = matrix->team->first;
+  while (i < choice)
+    {
+      temp = temp->next;
+      i = i + 1;
+    }
+  matrix->team->actif = temp;
 }

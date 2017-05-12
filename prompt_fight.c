@@ -7,7 +7,6 @@
 ** Started on  Thu May 11 13:19:41 2017 AIZPURUA Victor Hugo
 ** Last update Fri May 12 14:21:00 2017 PAREDES Alejandra
 */
-
 #include	<stdlib.h>
 #include	"midgar.h"
 
@@ -26,6 +25,7 @@ void		prompt_fight(t_matrix *matrix)
   char          *command;
   int           bool;
 
+  matrix->creature = get_creature();
   bool = 0;
   while (bool == 0 && matrix->creature != NULL)
     {
@@ -61,30 +61,49 @@ void            prompt_fight_cont(t_matrix *matrix, char *command)
 
 void		slash(t_matrix *matrix)
 {
-  matrix = matrix;
-  my_putstr("\033[34mSlash woooooow!\n");
+  if (matrix->team->actif->pm < 3)
+    {
+      my_putstr("You dont have enough MP ASSHOLE\n");
+      return;
+    }
+  my_putstr("You use Slash woooooow!\n");
+  matrix->team->actif->pm = matrix->team->actif->pm - 3;
+  matrix->creature->pv = matrix->creature->pv -15;
+  enemy_defeated(matrix);
 }
 
 void		fire(t_matrix *matrix)
 {
-  matrix = matrix;
-  my_putstr("\033[34mFire woooooow!\n");
+  if (matrix->team->actif->pm < 7)
+    {
+      my_putstr("You dont have enough MP ASSHOLE\n");
+      return;
+    }
+  my_putstr("You use Fire woooooow!\n");
+  matrix->team->actif->pm = matrix->team->actif->pm - 7;
+  matrix->creature->pv = matrix->creature->pv -30;
+  enemy_defeated(matrix);
 }
 
-void		gamble(t_matrix *matrix)
+void            gamble(t_matrix *matrix)
 {
-  matrix = matrix;
-  my_putstr("\033[34mGamble woooooow!\n");
-}
+  int           rnd;
 
-void            rest(t_matrix *matrix)
-{
-  matrix = matrix;
-  my_putstr("\033[34mRest wooooow!\n");
-}
-
-void		run(t_matrix *matrix)
-{
-  matrix = matrix;
-  my_putstr("\033[34mMagic Catch combat woooooow!\n");
+  my_putstr("Gamble woooooow!\n");
+  rnd = rand() % MONSTER;
+  if (rnd == 0)
+    {
+      rnd = rand() % GAMBLE;
+      my_putstr("The gamble attack bounces back to your monster\n He suffers ");
+      matrix->team->actif->pv = matrix->team->actif->pv - rnd;
+    }
+  else
+    {
+      rnd = rand() % GAMBLE;
+      my_putstr("The gamble attacks the enemy\n He suffers ");
+      matrix->creature->pv = matrix->creature->pv - rnd;
+    }
+  my_put_nbr(rnd);
+  my_putstr(" points of damage\n");
+  destroy_creature(matrix);
 }

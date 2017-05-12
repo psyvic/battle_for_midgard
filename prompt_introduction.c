@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 14:49:06 2017 AIZPURUA Victor Hugo
-** Last update Thu May 11 15:52:06 2017 AIZPURUA Victor Hugo
+** Last update Fri May 12 15:31:27 2017 AIZPURUA Victor Hugo
 */
 
 #include	<stdlib.h>
@@ -25,7 +25,7 @@ void		capture_prompt(t_matrix *matrix)
   int		bool;
 
   bool = 0;
-  while (bool == 0 && matrix->creature != NULL)
+  while (bool == 0)
     {
       my_putstr("intro_prompt?~> ");
       command = readLine();
@@ -44,7 +44,7 @@ int		capture_prompt_cont(t_matrix *matrix, char *command)
 
   i = 0;
   bool = 0;
-  while (g_capture_prompt[i].order != NULL && matrix->creature != NULL)
+  while (g_capture_prompt[i].order != NULL)
     {
       if (my_strcmp(command, g_capture_prompt[i].order) == 0)
 	{
@@ -61,7 +61,7 @@ int		capture_prompt_cont(t_matrix *matrix, char *command)
 void		magic_catch(t_matrix *matrix)
 {
   int rnd;
-  
+
   if (!matrix->player->magic_box)
     {
       my_putstr("You dont have any magic boxes left!\n");
@@ -79,6 +79,7 @@ void		magic_catch(t_matrix *matrix)
       my_putstr("You captured the ");
       my_putstr(matrix->team->first->name);
       my_putstr("\n");
+      prompt_oob(matrix);
     }
   else
     {
@@ -91,12 +92,12 @@ void		magic_catch(t_matrix *matrix)
     }
 }
 
- 
 void		help_me(t_matrix *matrix)
 {
   my_putstr("You run like a pussy from the ");
   my_putstr(matrix->creature->name);
   my_putstr("\n You escaped safely.\n");
+  free(matrix->creature);
   get_creature();
 }
 
