@@ -5,21 +5,22 @@
 ## Login   <aizpur_v@etna-alternance.net>
 ## 
 ## Started on  Sat Apr  1 07:46:15 2017 AIZPURUA Victor Hugo
-## Last update Thu May 11 15:55:12 2017 AIZPURUA Victor Hugo
+## Last update Fri May 12 12:31:38 2017 PAREDES Alejandra
 ##
 
 CC =            gcc
 NAME =          sta
-SRC =           main.c \
-		get_creature.c \
-		game_params.c \
-		prompt_introduction.c \
-		readline.c \
-		prompt_oob.c \
-		prompt_oob_2.c \
-		prompt_shop.c \
-		prompt_fight.c \
-		prompt_fight_2.c \
+SRC =           main.c			\
+		get_creature.c		\
+		game_params.c		\
+		prompt_introduction.c	\
+		readline.c		\
+		prompt_oob.c		\
+		prompt_oob_2.c		\
+		prompt_shop.c		\
+		prompt_fight.c		\
+		prompt_fight_2.c 	\
+		enemy.c			\
 
 OBJ =           $(SRC:%.c=%.o)
 CFLAGS =        -W -Wall -ansi -ansi -pedantic -Llibmy_01 -I.

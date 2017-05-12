@@ -74,6 +74,13 @@ struct                 s_prompt_shop
   void                 (*f)(t_matrix *matrix);
 };
 typedef struct         s_prompt_shop t_prompt_shop;
+/* AP code */
+struct			s_choose_attack
+{
+  int			option;
+  void			(*a)(t_matrix *matrix);
+};
+typedef struct		s_choose_attack t_choose_attack;
 
 char			*readLine();
 void			my_putchar(char c);
@@ -109,7 +116,7 @@ void			rest(t_matrix *matrix);
 void			magic_catch_combat(t_matrix *matrix);
 /*int			magic_catch_combat_prob(t_matrix *matrix);*/
 void			run(t_matrix *matrix);
-
+void			enemy_attack(t_matrix *);
 
 
 
