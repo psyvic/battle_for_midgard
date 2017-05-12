@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 10:11:23 2017 AIZPURUA Victor Hugo
-** Last update Thu May 11 14:11:28 2017 AIZPURUA Victor Hugo
+** Last update Fri May 12 12:30:41 2017 PAREDES Alejandra
 */
 
 #include <stdlib.h>
@@ -25,6 +25,7 @@ int main()
     {
       capture_prompt(matrix);
       }*/
-    prompt_oob(matrix);
+  /*    prompt_oob(matrix);*/
+  enemy_attack(matrix);
   return(0);
 }
