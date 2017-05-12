@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 10:18:08 2017 AIZPURUA Victor Hugo
-** Last update Thu May 11 10:05:53 2017 AIZPURUA Victor Hugo
+** Last update Fri May 12 00:01:29 2017 AIZPURUA Victor Hugo
 */
 #include		<stdlib.h>
 #include		<string.h>
