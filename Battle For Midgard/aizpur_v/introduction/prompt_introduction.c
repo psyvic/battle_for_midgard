@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 14:49:06 2017 AIZPURUA Victor Hugo
-** Last update Sat May 13 13:16:18 2017 PAREDES Alejandra
+** Last update Sat May 13 17:36:32 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -71,13 +71,14 @@ void		magic_catch(t_matrix *matrix)
       return;
     }
   rnd = rand() % CATCH_PROB + 1;
-  printf("rnd is %d\n", rnd);
+  printf("rnd is %d\n", rnd);/*test*/
   if (rnd == 1)
     {
       matrix->player->magic_box = matrix->player->magic_box - 1;
       matrix->team->first = matrix->creature;
       matrix->team->actif = matrix->creature;
       matrix->team->last = matrix->creature;
+      matrix->team->actif->is_savage ^= 1;
       matrix->creature = NULL;
       matrix->team->nb_creatures = matrix->team->nb_creatures + 1;
       my_putstr("You captured the ");

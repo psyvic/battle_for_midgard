@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 14:12:55 2017 AIZPURUA Victor Hugo
-** Last update Sat May 13 13:51:31 2017 PAREDES Alejandra
+** Last update Sat May 13 17:31:22 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -86,7 +86,6 @@ void		add_creature_to_team(t_matrix *matrix, t_creature *creature)
       matrix->team->first = creature;
       matrix->team->last = creature;
       creature->next = NULL;
-      creature->is_savage ^= 1;
     }
   else
     {
@@ -94,6 +93,7 @@ void		add_creature_to_team(t_matrix *matrix, t_creature *creature)
       matrix->team->first->prev = creature;
       matrix->team->first = creature;
     }
+  matrix->team->first->is_savage ^= 1;
   matrix->creature = NULL;
   creature->prev = NULL;
   matrix->team->nb_creatures = matrix->team->nb_creatures + 1;
