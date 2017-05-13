@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 13:19:41 2017 AIZPURUA Victor Hugo
-** Last update Sat May 13 15:06:54 2017 PAREDES Alejandra
+** Last update Sat May 13 17:56:46 2017 PAREDES Alejandra
 */
 #include	<stdlib.h>
 #include	<stdio.h>
@@ -40,11 +40,19 @@ type slash, fire, gamble, rest, magic catch or run\n");
 	    continue;
 	free(command);
 	printf("the name of the enemy is %s and the name of the chosen creature is %s\n", matrix->creature->name, matrix->team->actif->name);
-	if (matrix->creature != NULL && matrix->team->actif != NULL)
+	if (matrix->creature != NULL && matrix->team->actif != NULL \
+	    && matrix->creature->pv > 0)
 	  {
 	    printf("now is the turn of the enemy\n");
 	    enemy_attack(matrix);
+	    return;
 	  }
+	else if (matrix->creature != NULL && matrix->creature->pv < 1)
+	  {
+	    my_putstr_color("yellow", "[CONGRATULATIONS!]\n");
+	    enemy_defeated(matrix);
+	  }
+	  
       }
     return;
 }
