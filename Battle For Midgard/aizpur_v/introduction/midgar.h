@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Fri May 12 15:19:12 2017 AIZPURUA Victor Hugo
-** Last update Sat May 13 16:07:20 2017 PAREDES Alejandra
+** Last update Sat May 13 19:15:47 2017 AIZPURUA Victor Hugo
 */
 
 #ifndef			_MIDGAR_H_
@@ -133,5 +133,6 @@ void			enemy_attack(t_matrix *);
 void			instructions(t_matrix *);
 void			my_putstr_color(char *color, char *str);
 extern const		t_prompt_fight g_prompt_fight[];
+void			level_up(t_matrix *matrix);
 
 #endif			/* !_MIDGAR_H_ */

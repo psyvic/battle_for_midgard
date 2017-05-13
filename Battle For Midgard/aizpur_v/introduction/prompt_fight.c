@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 13:19:41 2017 AIZPURUA Victor Hugo
-** Last update Sat May 13 17:56:46 2017 PAREDES Alejandra
+** Last update Sat May 13 19:17:48 2017 AIZPURUA Victor Hugo
 */
 #include	<stdlib.h>
 #include	<stdio.h>
@@ -24,7 +24,7 @@ const    t_prompt_fight	   g_prompt_fight[] = {
 void		prompt_fight(t_matrix *matrix)
 {
     char          *command;
-    
+
     matrix->creature = get_creature();
     while (matrix->creature != NULL)
       {
@@ -39,11 +39,9 @@ type slash, fire, gamble, rest, magic catch or run\n");
 	  if (!prompt_fight_cont(matrix, command))
 	    continue;
 	free(command);
-	printf("the name of the enemy is %s and the name of the chosen creature is %s\n", matrix->creature->name, matrix->team->actif->name);
 	if (matrix->creature != NULL && matrix->team->actif != NULL \
 	    && matrix->creature->pv > 0)
 	  {
-	    printf("now is the turn of the enemy\n");
 	    enemy_attack(matrix);
 	    return;
 	  }
