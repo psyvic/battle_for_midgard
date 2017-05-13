@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 10:18:08 2017 AIZPURUA Victor Hugo
-** Last update Sat May 13 11:45:22 2017 PAREDES Alejandra
+** Last update Sat May 13 18:15:54 2017 AIZPURUA Victor Hugo
 */
 #include		<stdlib.h>
 #include		<string.h>
@@ -43,11 +43,9 @@ t_creature		*get_creature()
   crea->next = NULL;
   my_putstr("You found a big wild ");
   my_putstr(crea->name);
-  my_putstr("\n");
-  my_putstr("PV ");
+  my_putstr("\nPV ");
   my_put_nbr(crea->pv);
-  my_putstr("\n");
-  my_putstr("PM ");
+  my_putstr("\nPM ");
   my_put_nbr(crea->pm);
   my_putstr("\n");
   return (crea);

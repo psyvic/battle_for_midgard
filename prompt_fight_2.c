@@ -5,10 +5,11 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 14:12:55 2017 AIZPURUA Victor Hugo
-** Last update Sat May 13 17:31:22 2017 PAREDES Alejandra
+** Last update Sat May 13 19:17:10 2017 AIZPURUA Victor Hugo
 */
 
 #include	<stdlib.h>
+#include	<stdio.h>
 #include	"midgar.h"
 
 int            rest(t_creature *attacker, t_creature *defenser,\
@@ -66,7 +67,7 @@ int		magic_catch_combat(t_creature *attacker, t_creature *defenser,\
   if (rnd <= delta_pv)
     {
       if (defenser->is_savage == 0)
-	add_creature_to_team(matrix, defenser);
+	  add_creature_to_team(matrix, defenser);
       else
 	my_putstr("the enemy got your creature");
     }  
@@ -95,10 +96,26 @@ void		add_creature_to_team(t_matrix *matrix, t_creature *creature)
     }
   matrix->team->first->is_savage ^= 1;
   matrix->creature = NULL;
-  creature->prev = NULL;
+  matrix->team->first->prev = NULL;
   matrix->team->nb_creatures = matrix->team->nb_creatures + 1;
   my_putstr("You captured the ");
   my_putstr(matrix->team->first->name);
   my_putstr("\n");
+  level_up(matrix);
 }
 
+void		level_up(t_matrix *matrix)
+{
+  matrix->team->first->lvl = matrix->team->first->lvl + 1;
+  matrix->team->first->pvmax = matrix->team->first->pvmax * 2;
+  matrix->team->first->pmmax = matrix->team->first->pmmax * 2;
+  matrix->team->first->pv = matrix->team->first->pvmax;
+  matrix->team->first->pm = matrix->team->first->pmmax;
+  my_putstr("Your new monster has lvled up! He is now lvl ");
+  my_put_nbr(matrix->team->first->lvl);
+  my_putstr("\nPV ");
+  my_put_nbr(matrix->team->first->pv);
+  my_putstr("\nPM ");
+  my_put_nbr(matrix->team->first->pm);
+  my_putstr("\n");
+}
