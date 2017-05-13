@@ -5,11 +5,11 @@
 ## Login   <aizpur_v@etna-alternance.net>
 ## 	
 ## Started on  Sat Apr  1 07:46:15 2017 AIZPURUA Victor Hugo
-## Last update Fri May 12 17:14:40 2017 AIZPURUA Victor Hugo
-CC =            colorgcc
+CC =            gcc
 NAME =          sta
 SRC =           main.c			\
 		get_creature.c		\
+		my_string.c		\
 		game_params.c		\
 		prompt_introduction.c	\
 		readline.c		\

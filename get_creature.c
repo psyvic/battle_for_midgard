@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 10:18:08 2017 AIZPURUA Victor Hugo
-** Last update Fri May 12 00:01:29 2017 AIZPURUA Victor Hugo
+** Last update Sat May 13 11:45:22 2017 PAREDES Alejandra
 */
 #include		<stdlib.h>
 #include		<string.h>
@@ -14,12 +14,12 @@
 
 static t_creature	g_creatures[] =
   {
-    {"Koopa", 1, 10, 10, 20, 20, NULL, NULL},
-    {"Bob bomb", 1, 10, 10, 20, 20, NULL, NULL},
-    {"Yoshi", 1, 10, 10, 20, 20, NULL, NULL},
-    {"Maskas", 1, 10, 10, 20, 20, NULL, NULL},
-    {"Kucco", 1, 10, 10, 20, 20, NULL, NULL},
-    {NULL, 0, 0, 0, 0, 0, NULL, NULL}
+    {"Koopa", 1, 10, 10, 20, 20, 0, NULL, NULL},
+    {"Bob bomb", 1, 10, 10, 20, 20, 0, NULL, NULL},
+    {"Yoshi", 1, 10, 10, 20, 20, 0, NULL, NULL},
+    {"Maskas", 1, 10, 10, 20, 20, 0, NULL, NULL},
+    {"Kucco", 1, 10, 10, 20, 20, 0, NULL, NULL},
+    {NULL, 0, 0, 0, 0, 0, 0, NULL, NULL}
   };
 
 t_creature		*get_creature()
@@ -38,6 +38,7 @@ t_creature		*get_creature()
   crea->pvmax = g_creatures[rnd].pvmax;
   crea->pm = g_creatures[rnd].pm;
   crea->pmmax = g_creatures[rnd].pmmax;
+  crea->is_savage = g_creatures[rnd].is_savage;
   crea->prev = NULL;
   crea->next = NULL;
   my_putstr("You found a big wild ");

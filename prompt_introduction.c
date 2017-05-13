@@ -5,17 +5,19 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 14:49:06 2017 AIZPURUA Victor Hugo
-** Last update Fri May 12 15:31:27 2017 AIZPURUA Victor Hugo
+** Last update Sat May 13 13:16:18 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
+#include	<stdio.h>
 #include	"midgar.h"
 
 static const	t_capture_prompt   g_capture_prompt[] = {
-  {"magic_catch", &magic_catch},
-  {"help_me!", &help_me},
+  {"catch", &magic_catch},
+  {"help", &help_me},
   {"shop", &prompt_shop},
   {"quit", &quit},
+  {"instructions", &instructions},
   {NULL, NULL}
 };
 
@@ -23,6 +25,7 @@ void		capture_prompt(t_matrix *matrix)
 {
   char		*command;
   int		bool;
+  int		i;
 
   bool = 0;
   while (bool == 0)
@@ -30,44 +33,45 @@ void		capture_prompt(t_matrix *matrix)
       my_putstr("intro_prompt?~> ");
       command = readLine();
       if (command == NULL)
+	{
+	  my_putstr("[ERROR] Thats not an option! \n");
+	  continue;
+	}
+      else for (i = 0; g_capture_prompt[i].order != NULL; i++)
+	  if (my_strcmp(command, g_capture_prompt[i].order) == 0)
+	    {
+	      g_capture_prompt[i].f(matrix);
+	      bool = 1;
+	    }
+      if (bool == 0)
 	my_putstr("[ERROR] Thats not an option! \n");
-      else
-	bool = capture_prompt_cont(matrix, command);
       free(command);
     }
 }
 
-int		capture_prompt_cont(t_matrix *matrix, char *command)
+void		instructions(t_matrix *matrix)
 {
-  int		bool;
-  int		i;
-
-  i = 0;
-  bool = 0;
-  while (g_capture_prompt[i].order != NULL)
-    {
-      if (my_strcmp(command, g_capture_prompt[i].order) == 0)
-	{
-	  g_capture_prompt[i].f(matrix);
-	  bool = 1;
-	}
-      i = i + 1;
-    }
-  if (bool == 0)
-    my_putstr("[ERROR] Thats not an option! \n");
-  return (bool);
+  (void) matrix;
+  my_putstr("***************************************************************\n");
+  my_putstr("Some tips to remember pal!\n");
+  my_putstr("Type **catch** to put the creature on your team 30% of chance\n");
+  my_putstr("\ntype **help** to get out of there before you become his meal\n");
+  my_putstr("\nIn the mood for shopping? Type **shop** to see what you have\n");
+  my_putstr("\nTired of this game? You can just **quit** whenever you want!\n");
+  my_putstr("***************************************************************\n");
 }
 
 void		magic_catch(t_matrix *matrix)
 {
-  int rnd;
+  int		rnd;
 
   if (!matrix->player->magic_box)
     {
       my_putstr("You dont have any magic boxes left!\n");
       return;
     }
-  rnd = rand() % CATCH_PROB;
+  rnd = rand() % CATCH_PROB + 1;
+  printf("rnd is %d\n", rnd);
   if (rnd == 1)
     {
       matrix->player->magic_box = matrix->player->magic_box - 1;
@@ -104,5 +108,5 @@ void		help_me(t_matrix *matrix)
 void		quit(t_matrix *matrix)
 {
   matrix->quit = 1;
-  my_putstr("\033[34mQuitting game!\n");
+  my_putstr("Quitting game!\n");
 }
