@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 09:12:36 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 20:35:09 2017 PAREDES Alejandra
+** Last update Sun May 14 22:36:56 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -21,16 +21,14 @@ static const    t_prompt_shop   g_prompt_shop[] = {
 int		prompt_shop(t_matrix *matrix)
 {
   char		*command;
-  int		bool;
 
-  bool = 0;
   matrix->quit_prompt = 0;
-  while (bool == 0 && matrix->quit_prompt == 0)
+  while (matrix->quit_prompt == 0)
     {
       my_putstr("shop_prompt?~> ");
       command = readLine();
       if (command == NULL)
-	  my_putstr("[ERROR] Thats not an option! Type mushroom or box to buy \
+	my_putstr("[ERROR] Thats not an option! Type mushroom or box to buy \
 some. You can also type exit if you are done here\n");
       else
 	prompt_shop_cont(matrix, command);
@@ -43,22 +41,19 @@ some. You can also type exit if you are done here\n");
 
 void		prompt_shop_cont(t_matrix *matrix, char *command)
 {
-  int		bool;
   int		i;
 
   i = 0;
-  bool = 0;
   while (g_prompt_shop[i].order != NULL)
     {
       if (my_strcmp(command, g_prompt_shop[i].order) == 0)
 	{
 	  g_prompt_shop[i].f(matrix);
-	  bool = 1;
+	  return ;
 	}
       i = i + 1;
     }
-  if (bool == 0)
-    my_putstr("[ERROR] Thats not an option! Type mushroom or box to buy \
+  my_putstr("[ERROR] Thats not an option! Type mushroom or box to buy \
 some. You can also type exit if you are done here\n");
 }
 

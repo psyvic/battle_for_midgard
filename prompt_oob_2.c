@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 01:08:21 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 13:01:19 2017 PAREDES Alejandra
+** Last update Sun May 14 22:35:42 2017 PAREDES Alejandra
 */
 
 #include        <stdlib.h>
@@ -18,7 +18,7 @@ int		mushroom(t_matrix *matrix)
   if (matrix->player->mushroom == 0)
     {
       my_putstr("You dont have any mushrooms p'tite bite!\n");
-      return (0);
+      return (-1);
     }
   matrix->player->mushroom = matrix->player->mushroom - 1;
   rnd = (rand() % MUSHROOM + 15) * matrix->team->actif->pvmax / 100;
