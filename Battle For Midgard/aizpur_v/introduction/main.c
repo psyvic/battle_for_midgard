@@ -5,16 +5,16 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 10:11:23 2017 AIZPURUA Victor Hugo
-** Last update Sat May 13 18:26:24 2017 AIZPURUA Victor Hugo
+** Last update Sun May 14 20:05:58 2017 PAREDES Alejandra
 */
 
 #include <time.h>
 #include <stdlib.h>
 #include "midgar.h"
 
-int main()
+void		main()
 {
-  t_matrix *matrix;
+  t_matrix	*matrix;
 
   srand(time(NULL));
   matrix = create_matrix();
@@ -25,5 +25,5 @@ int main()
     {
       capture_prompt(matrix);
     }
-  return (0);
+  return;
 }

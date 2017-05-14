@@ -5,7 +5,7 @@
 ** Login   <parede_h@etna-alternance.net>
 ** 
 ** Started on  Fri May 12 11:54:44 2017 PAREDES Alejandra
-** Last update Sat May 13 13:25:49 2017 PAREDES Alejandra
+** Last update Sun May 14 16:21:55 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -21,7 +21,6 @@ void		enemy_attack(t_matrix *matrix)
   
   i = 0;
   attack = rand() % 5;
-  printf("the random number for attack is %d \n", attack); /*test*/
   while (i < 6)
     {
       if (attack == i)
