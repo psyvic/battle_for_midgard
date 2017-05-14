@@ -5,7 +5,7 @@
 ** Login   <parede_h@etna-alternance.net>
 ** 
 ** Started on  Fri May 12 11:54:44 2017 PAREDES Alejandra
-** Last update Sun May 14 16:21:55 2017 PAREDES Alejandra
+** Last update Sun May 14 20:44:44 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -20,7 +20,7 @@ void		enemy_attack(t_matrix *matrix)
   int		i;
   
   i = 0;
-  attack = rand() % 5;
+  attack = rand() % 4;
   while (i < 6)
     {
       if (attack == i)

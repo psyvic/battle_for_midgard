@@ -5,11 +5,10 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 14:12:55 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 20:03:28 2017 PAREDES Alejandra
+** Last update Sun May 14 20:37:52 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
-#include	<stdio.h>
 #include	"midgar.h"
 
 int            rest(t_creature *attacker, t_creature *defenser,\
@@ -20,7 +19,7 @@ int            rest(t_creature *attacker, t_creature *defenser,\
   my_putstr("mp before resting: ");
   my_put_nbr(attacker->pm);
   my_putstr("\n");
-  my_putstr("Resting, you recover 10 MP\n");
+  my_putstr("Resting, the creature recovers 10 MP\n");
   attacker->pm = attacker->pm + 10;
   if (attacker->pm > attacker->pmmax)
     attacker->pm = attacker->pmmax;
