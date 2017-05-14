@@ -19,10 +19,12 @@ SRC =           main.c			\
 		prompt_fight.c		\
 		prompt_fight_2.c 	\
 		enemy.c			\
-		destroy_creatures.c
+		destroy_creatures.c	\
+		print_utils.c		\
+		suplem_funtions.c	
 
 OBJ =		$(SRC:%.c=%.o)
-CFLAGS =	-W -Wall -Wextra -Werror -ansi -ansi -pedantic -Llibmy_01 -I.
+CFLAGS =	-W -Wall -Wextra -Werror -ansi -ansi -pedantic -g -Llibmy_01 -I.
 LDFLAGS =
 RM =		rm -f
 
@@ -30,6 +32,7 @@ RM =		rm -f
 $(NAME):	$(OBJ)
 		make -C libmy_01
 		$(CC) $(OBJ) -o $(NAME) $(CFLAGS) -lmy
+debug:		CFLAGS += -g
 debug:		$(OBJ)
 		$(CC) -g $(OBJ) -o $(NAME) $(CFLAGS)
 all:		$(NAME)

@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 14:12:55 2017 AIZPURUA Victor Hugo
-** Last update Sat May 13 19:17:10 2017 AIZPURUA Victor Hugo
+** Last update Sun May 14 20:03:28 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -40,7 +40,6 @@ int            run(t_creature *attacker, t_creature *defenser,\
   defenser = NULL;
   return (1);
 }
-/*para el magic catch especialmente necesito saber si es el player quien ataca. Ahi entra is_savage, una nueva variable en t_creature para verificar, si esta en el equipo es porque ya no es savage*/
 
 int		magic_catch_combat(t_creature *attacker, t_creature *defenser,\
 				   t_matrix *matrix)
@@ -48,28 +47,22 @@ int		magic_catch_combat(t_creature *attacker, t_creature *defenser,\
   int		rnd;
   int		delta_pv;
 
+  my_putstr_color("red", "Trying to CATCH the creature\n");
   delta_pv = defenser->pvmax - defenser->pv;
   if (attacker->is_savage == 1 && matrix->player->magic_box < 1)
     {
       my_putstr("You dont have any magic boxes left!\n");
-      my_putstr("\t\tnow the system will print not enough PV. PENDING\n");
       return (0);
     }
   if (attacker->is_savage == 1)
     matrix->player->magic_box -= 1;
   rnd = rand() % defenser->pvmax;
-  my_putstr("random number para capturar es ");/* test */
-  my_put_nbr(rnd);/* test */
-  my_putstr("\n");/* test */
-  my_putstr("y delta_pv number es ");/* test */
-  my_put_nbr(delta_pv);/* test */
-  my_putstr(", Delta debe ser igual o menor de random para capturar\n");/* test */
   if (rnd <= delta_pv)
     {
       if (defenser->is_savage == 0)
 	  add_creature_to_team(matrix, defenser);
       else
-	my_putstr("the enemy got your creature");
+	my_putstr("the enemy got your creature\n");
     }  
   else
     {

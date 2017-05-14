@@ -5,7 +5,6 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Fri May 12 15:19:12 2017 AIZPURUA Victor Hugo
-** Last update Sat May 13 19:15:47 2017 AIZPURUA Victor Hugo
 */
 
 #ifndef			_MIDGAR_H_
@@ -16,6 +15,9 @@
 #define			MONSTER 2
 #define			GAMBLE 21
 #define			MUSHROOM 11
+
+#define			UPPER 1
+#define			LOWER 2
 
 struct			s_player
 {
@@ -63,14 +65,14 @@ typedef struct		s_matrix t_matrix;
 struct                 s_capture_prompt
 {
   char                 *order;
-  void                 (*f)(t_matrix *matrix);
+  int                 (*f)(t_matrix *matrix);
 };
 typedef struct         s_capture_prompt t_capture_prompt;
 
 struct                 s_prompt_oob
 {
   char                 *order;
-  void                 (*f)(t_matrix *matrix);
+  int                 (*f)(t_matrix *matrix);
 };
 typedef struct         s_prompt_oob t_prompt_oob;
 
@@ -84,7 +86,7 @@ typedef struct         s_prompt_fight t_prompt_fight;
 struct			s_prompt_shop
 {
   char			*order;
-  void                   (*f)(t_matrix *matrix);
+  int                   (*f)(t_matrix *matrix);
 };
 typedef struct		s_prompt_shop t_prompt_shop;
 
@@ -100,22 +102,22 @@ int	                create_team(t_matrix *matrix);
 int		        create_player(t_matrix *matrix);
 t_creature              *get_creature();
 void			capture_prompt(t_matrix *matrix);
-void			magic_catch(t_matrix *matrix);
-void			help_me(t_matrix *matrix);
-void			quit(t_matrix *matrix);
-void			prompt_oob(t_matrix *matrix);
-void			prompt_oob_cont(t_matrix *matrix, char *command);
-void			team(t_matrix *matrix);
+int			magic_catch(t_matrix *matrix);
+int			help_me(t_matrix *matrix);
+int			quit(t_matrix *matrix);
+int			prompt_oob(t_matrix *matrix);
+int			prompt_oob_cont(t_matrix *matrix, char *command);
+int			team(t_matrix *matrix);
 void			team_cont(t_matrix *matrix);
-void			choose_monster(t_matrix *matrix);
-void			mushroom(t_matrix *matrix);
-void			prompt_fight(t_matrix *matrix);
+int			choose_monster(t_matrix *matrix);
+int			mushroom(t_matrix *matrix);
+int			prompt_fight(t_matrix *matrix);
 int			prompt_fight_cont(t_matrix *matrix, char *command);
-void			prompt_shop(t_matrix *matrix);
+int			prompt_shop(t_matrix *matrix);
 void			prompt_shop_cont(t_matrix *matrix, char *command);
-void			buy_mushroom(t_matrix *matrix);
-void			buy_magic_box(t_matrix *matrix);
-void			exit_shop(t_matrix *matrix);
+int			buy_mushroom(t_matrix *matrix);
+int			buy_magic_box(t_matrix *matrix);
+int			exit_game(t_matrix *matrix);
 int			slash(t_creature *, t_creature *, t_matrix *);
 int			fire(t_creature *, t_creature *,  t_matrix *);
 int			gamble(t_creature *, t_creature *,  t_matrix *);
@@ -130,9 +132,14 @@ void			enemy_defeated(t_matrix *matrix);
 void			del_creature_from_team(t_matrix *matrix);
 void			del_prob(t_matrix *matrix);
 void			enemy_attack(t_matrix *);
-void			instructions(t_matrix *);
+int			instructions(t_matrix *);
 void			my_putstr_color(char *color, char *str);
 extern const		t_prompt_fight g_prompt_fight[];
 void			level_up(t_matrix *matrix);
+int			damage_points(int , int );
+void			print_creature_name(t_creature *creature, int maj);
+void			print_dmg(int dmg, int pv_lost, t_creature *attacker, \
+				  t_creature *defenser);
+int			is_dead(t_matrix *);
 
 #endif			/* !_MIDGAR_H_ */

@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 09:12:36 2017 AIZPURUA Victor Hugo
-** Last update Thu May 11 14:07:41 2017 AIZPURUA Victor Hugo
+** Last update Sun May 14 20:16:45 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -13,12 +13,12 @@
 
 static const    t_prompt_shop   g_prompt_shop[] = {
   {"mushroom", &buy_mushroom},
-  {"magic_box", &buy_magic_box},
-  {"exit", &exit_shop},
+  {"box", &buy_magic_box},
+  {"exit", &exit_game},
   {NULL, NULL}
 };
 
-void		prompt_shop(t_matrix *matrix)
+int		prompt_shop(t_matrix *matrix)
 {
   char		*command;
   int		bool;
@@ -30,11 +30,15 @@ void		prompt_shop(t_matrix *matrix)
       my_putstr("shop_prompt?~> ");
       command = readLine();
       if (command == NULL)
-	my_putstr("[ERROR] Thats not an option! \n");
+	  my_putstr("[ERROR] Thats not an option! Type mushroom, box, or exit \
+if you are done here\n");
       else
 	prompt_shop_cont(matrix, command);
       free(command);
+      if (matrix->team->actif != NULL)
+	prompt_oob(matrix);
     }
+  return (1);
 }
 
 void		prompt_shop_cont(t_matrix *matrix, char *command)
@@ -57,41 +61,42 @@ void		prompt_shop_cont(t_matrix *matrix, char *command)
     my_putstr("[ERROR] Thats not an option! \n");
 }
 
-void		buy_mushroom(t_matrix *matrix)
+int		buy_mushroom(t_matrix *matrix)
 {
   if (matrix->player->money < 30)
     {
       my_putstr("You dont have enough money you lil bitch!");
-      return;
+      return (0);
     }
-  matrix->player->money = matrix->player->money - 30;
-  matrix->player->mushroom = matrix->player->mushroom + 1;
+  matrix->player->money -= 30;
+  matrix->player->mushroom += 1;
   my_putstr("You bought a mushroom, you now have ");
   my_put_nbr(matrix->player->mushroom);
   my_putstr(" mushrooms and ");
   my_put_nbr(matrix->player->money);
   my_putstr(" rupees\n");
+  return (1);
 }
 
-void		buy_magic_box(t_matrix *matrix)
+int		buy_magic_box(t_matrix *matrix)
 {
   if (matrix->player->money < 90)
     {
       my_putstr("You dont have enough money you lil bitch!");
-      return;
+      return (0);
     }
-  matrix->player->money = matrix->player->money - 90;
-  matrix->player->magic_box = matrix->player->magic_box + 1;
+  matrix->player->money -= 90;
+  matrix->player->magic_box += 1;
   my_putstr("You bought a magic box, you now have ");
   my_put_nbr(matrix->player->magic_box);
   my_putstr(" magic boxes and ");
   my_put_nbr(matrix->player->money);
   my_putstr(" rupees\n");
+  return (1);
 }
 
-void		exit_shop(t_matrix *matrix)
+int		exit_game(t_matrix *matrix)
 {
   matrix->quit_prompt = 1;
-  my_putstr("hola soy exit\n");
+  return (-1);
 }
-

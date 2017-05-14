@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Fri May 12 10:28:25 2017 AIZPURUA Victor Hugo
-** Last update Fri May 12 15:12:32 2017 AIZPURUA Victor Hugo
+** Last update Sun May 14 19:58:25 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -35,7 +35,7 @@ void		del_prob(t_matrix *matrix)
   if (matrix->team->first == matrix->team->actif &&
       matrix->team->last != matrix->team->actif)
     {
-      matrix->team->actif->next->prev = NULL;
+      matrix->team->first->next->prev = NULL;
       matrix->team->first = matrix->team->first->next;
     }
   else if (matrix->team->last == matrix->team->actif &&
@@ -74,4 +74,5 @@ void            enemy_defeated(t_matrix *matrix)
       my_put_nbr(matrix->player->money);
       my_putstr("\n");
     }
+  
 }

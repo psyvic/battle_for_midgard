@@ -5,41 +5,45 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 17:47:34 2017 AIZPURUA Victor Hugo
-** Last update Fri May 12 14:34:56 2017 AIZPURUA Victor Hugo
+** Last update Sun May 14 20:13:06 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
+#include	<stdio.h>
 #include	"midgar.h"
 
 static const    t_prompt_oob   g_prompt_oob[] = {
   {"team", &team},
-  {"choose_monster", &choose_monster},
+  {"choose", &choose_monster},
   {"mushroom", &mushroom},
   {"shop", &prompt_shop},
   {"fight", &prompt_fight},
-  {"quit", &quit},
+  {"quit", &exit_game},
   {NULL, NULL}
 };
 
-void		prompt_oob(t_matrix *matrix)
+int		prompt_oob(t_matrix *matrix)
 {
   char		*command;
   int		bool;
 
   bool = 0;
-  while (bool == 0)
+  while (bool == 0 && matrix->quit_prompt == 0)
     {
       my_putstr("oob_prompt?~> ");
       command = readLine();
       if (command == NULL)
-	my_putstr("[ERROR] Thats not an option! \n");
+	my_putstr("[ERROR] Thats not an option! Type team, choose, mushroom, \
+shop, fight, quit to play\n");
       else
-	prompt_oob_cont(matrix, command);
+	if (prompt_oob_cont(matrix, command) == 0)
+	  return (0);
       free(command);
     }
+  return (-1);
 }
 
-void		prompt_oob_cont(t_matrix *matrix, char *command)
+int		prompt_oob_cont(t_matrix *matrix, char *command)
 {
   int		bool;
   int		i;
@@ -50,23 +54,27 @@ void		prompt_oob_cont(t_matrix *matrix, char *command)
     {
       if (my_strcmp(command, g_prompt_oob[i].order) == 0)
 	{
-	  g_prompt_oob[i].f(matrix);
+	  if (g_prompt_oob[i].f(matrix) == 0)
+	    return (0);
 	  bool = 1;
 	}
       i = i + 1;
     }
   if (bool == 0)
-    my_putstr("[ERROR] Thats not an option! \n");
+	my_putstr("[ERROR] Thats not an option! Type team, choose, mushroom, \
+shop, fight, quit to play\n");
+  return (1);
 }
 
-void		team(t_matrix *matrix)
+int		team(t_matrix *matrix)
 {
   if (matrix->team->first == NULL)
     {
       my_putstr("You dont have any monsters on your team\n");
-      return;
+      return (0);
     }
   team_cont(matrix);
+  return (1);
 }
 
 void		team_cont(t_matrix *matrix)
@@ -95,28 +103,27 @@ void		team_cont(t_matrix *matrix)
     }
 }
 
-void            choose_monster(t_matrix *matrix)
+int		choose_monster(t_matrix *matrix)
 {
   t_creature	*temp;
   int		i;
   int		choice;
 
-  i = 1;
-  my_put_nbr(matrix->team->nb_creatures);
-  my_putstr("\n\n");
   team(matrix);
-  my_putstr("Which monster do you want to choose? Pick a number ~> ");
-  choice = my_getnbr(readLine());
-  if (choice > matrix->team->nb_creatures)
+  matrix->team->actif = NULL;
+  while (matrix->team->actif == NULL)
     {
-      my_putstr("The monster member doesnt exist\n");
-      return;
+      my_putstr("Which monster do you want to choose? Pick a number ~> ");
+      choice = my_getnbr(readLine());
+      if (choice > matrix->team->nb_creatures)
+	{
+	  my_putstr("The monster member doesnt exist\n");
+	  continue;
+	}
+      temp = matrix->team->first;
+      for (i = 1; i < choice; i++)
+	temp = temp->next;
+      matrix->team->actif = temp;
     }
-  temp = matrix->team->first;
-  while (i < choice)
-    {
-      temp = temp->next;
-      i = i + 1;
-    }
-  matrix->team->actif = temp;
+  return (1);
 }
