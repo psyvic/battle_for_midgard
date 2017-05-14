@@ -5,14 +5,14 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 10:11:23 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 20:05:58 2017 PAREDES Alejandra
+** Last update Sun May 14 20:19:50 2017 PAREDES Alejandra
 */
 
 #include <time.h>
 #include <stdlib.h>
 #include "midgar.h"
 
-void		main()
+int		main()
 {
   t_matrix	*matrix;
 
@@ -25,5 +25,5 @@ void		main()
     {
       capture_prompt(matrix);
     }
-  return;
+  return (1);
 }
