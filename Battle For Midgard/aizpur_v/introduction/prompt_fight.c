@@ -25,7 +25,7 @@ int		prompt_fight(t_matrix *matrix)
   char		*command;
 
   matrix->creature = get_creature();
-  while (matrix->creature != NULL)
+  while (!is_dead(matrix))
     {
       my_putstr("fight_prompt?~> ");
       command = readLine();
@@ -43,8 +43,6 @@ type slash, fire, gamble, rest, catch or run\n");
 	  my_putstr_color("red", "[THE ENEMY IS ATTACKING NOW]\n");
 	  enemy_attack(matrix);
 	}
-      if (is_dead(matrix) == 1)
-	return (0);
     }
   return (1);
 }

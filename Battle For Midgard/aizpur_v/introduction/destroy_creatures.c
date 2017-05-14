@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Fri May 12 10:28:25 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 19:58:25 2017 PAREDES Alejandra
+** Last update Sun May 14 21:00:59 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -73,6 +73,5 @@ void            enemy_defeated(t_matrix *matrix)
       my_putstr("You now have ");
       my_put_nbr(matrix->player->money);
       my_putstr("\n");
-    }
-  
+    } 
 }

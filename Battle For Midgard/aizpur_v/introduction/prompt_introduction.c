@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 14:49:06 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 20:03:43 2017 PAREDES Alejandra
+** Last update Sun May 14 21:34:31 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -26,17 +26,16 @@ void		capture_prompt(t_matrix *matrix)
   char		*command;
   int		bool;
   int		i;
-
+  
   bool = 0;
   while (bool == 0)
     {
       my_putstr("intro_prompt?~> ");
       command = readLine();
       if (command == NULL)
-	{
-	  my_putstr("[ERROR] Thats not an option! \n");
-	}
-      else for (i = 0; g_capture_prompt[i].order != NULL; i++)
+	my_putstr("[ERROR] Thats not an option! \n");
+      else
+	for (i = 0; g_capture_prompt[i].order != NULL; i++)
 	  if (my_strcmp(command, g_capture_prompt[i].order) == 0)
 	    {
 	      g_capture_prompt[i].f(matrix);
