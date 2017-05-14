@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 17:47:34 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 21:42:30 2017 PAREDES Alejandra
+** Last update Sun May 14 22:40:47 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -33,14 +33,13 @@ int		prompt_oob(t_matrix *matrix)
       if (command == NULL)
 	my_putstr("[ERROR] Thats not an option! Type team, choose, mushroom, \
 shop, fight, quit to play\n");
-      else if (prompt_oob_cont(matrix, command) == 0)
-	return (0);
+      prompt_oob_cont(matrix, command);
       free(command);
     }
   return (-1);
 }
 
-int		prompt_oob_cont(t_matrix *matrix, char *command)
+void		prompt_oob_cont(t_matrix *matrix, char *command)
 {
   int		i;
 
@@ -49,29 +48,16 @@ int		prompt_oob_cont(t_matrix *matrix, char *command)
     {
       if (my_strcmp(command, g_prompt_oob[i].order) == 0)
 	{
-	  if (g_prompt_oob[i].f(matrix) == 0)
-	    return (0);
-	  return (1);
+	  g_prompt_oob[i].f(matrix);
+	  return;
 	}
       i = i + 1;
     }
   my_putstr("[ERROR] Thats not an option! Type team, choose, mushroom, \
 shop, fight, quit to play\n");
-  return (0);
 }
 
 int		team(t_matrix *matrix)
-{
-  if (matrix->team->first == NULL)
-    {
-      my_putstr("You dont have any monsters on your team\n");
-      return (0);
-    }
-  team_cont(matrix);
-  return (1);
-}
-
-void		team_cont(t_matrix *matrix)
 {
   t_creature	*temp;
   int		team_number;
@@ -95,6 +81,7 @@ void		team_cont(t_matrix *matrix)
       temp = temp->next;
       team_number = team_number + 1;
     }
+  return (1);
 }
 
 int		choose_monster(t_matrix *matrix)

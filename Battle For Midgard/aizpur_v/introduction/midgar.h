@@ -106,7 +106,7 @@ int			magic_catch(t_matrix *matrix);
 int			help_me(t_matrix *matrix);
 int			quit(t_matrix *matrix);
 int			prompt_oob(t_matrix *matrix);
-int			prompt_oob_cont(t_matrix *matrix, char *command);
+void			prompt_oob_cont(t_matrix *matrix, char *command);
 int			team(t_matrix *matrix);
 void			team_cont(t_matrix *matrix);
 int			choose_monster(t_matrix *matrix);
