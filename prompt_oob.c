@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 17:47:34 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 21:29:16 2017 PAREDES Alejandra
+** Last update Sun May 14 21:42:30 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -34,7 +34,7 @@ int		prompt_oob(t_matrix *matrix)
 	my_putstr("[ERROR] Thats not an option! Type team, choose, mushroom, \
 shop, fight, quit to play\n");
       else if (prompt_oob_cont(matrix, command) == 0)
-	  return (0);
+	return (0);
       free(command);
     }
   return (-1);
@@ -109,15 +109,15 @@ int		choose_monster(t_matrix *matrix)
     {
       my_putstr("Which monster do you want to choose? Pick a number ~> ");
       choice = my_getnbr(readLine());
-      if (choice > matrix->team->nb_creatures)
+      if (choice >= 0 && choice <= matrix->team->nb_creatures)
 	{
-	  my_putstr("The monster member doesnt exist\n");
-	  continue;
+	  temp = matrix->team->first;
+	  for (i = 1; i < choice; i++)
+	    temp = temp->next;
+	  matrix->team->actif = temp;
 	}
-      temp = matrix->team->first;
-      for (i = 1; i < choice; i++)
-	temp = temp->next;
-      matrix->team->actif = temp;
+      else
+	my_putstr("The monster member doesnt exist\n");
     }
   return (1);
 }

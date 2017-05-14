@@ -34,14 +34,15 @@ int		prompt_fight(t_matrix *matrix)
 	  my_putstr("[ERROR] Thats not an option! \
 type slash, fire, gamble, rest, catch or run\n");
 	}
-      else if (prompt_fight_cont(matrix, command) == 0)
-	continue;
-      free(command);
-      if (matrix->creature && matrix->team->actif	\
-	  && matrix->creature->pv > 0 && matrix->team->actif->pv > 0)
+      else if (prompt_fight_cont(matrix, command) != 0)
 	{
-	  my_putstr_color("red", "[THE ENEMY IS ATTACKING NOW]\n");
-	  enemy_attack(matrix);
+	  free(command);
+	  if (matrix->creature && matrix->team->actif			\
+	      && matrix->creature->pv > 0 && matrix->team->actif->pv > 0)
+	    {
+	      my_putstr_color("red", "[THE ENEMY IS ATTACKING NOW]\n");
+	      enemy_attack(matrix);
+	    }
 	}
     }
   return (1);
