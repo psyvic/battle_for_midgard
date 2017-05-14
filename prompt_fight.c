@@ -14,8 +14,8 @@ const    t_prompt_fight	   g_prompt_fight[] = {
   {"slash", &slash},
   {"fire", &fire},
   {"gamble", &gamble},
-  {"rest", &rest},
   {"catch", &magic_catch_combat},
+  {"rest", &rest},
   {"run", &run},
   {NULL, NULL}
 };

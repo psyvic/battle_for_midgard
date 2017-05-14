@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Thu May 11 09:12:36 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 20:16:45 2017 PAREDES Alejandra
+** Last update Sun May 14 20:35:09 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -30,8 +30,8 @@ int		prompt_shop(t_matrix *matrix)
       my_putstr("shop_prompt?~> ");
       command = readLine();
       if (command == NULL)
-	  my_putstr("[ERROR] Thats not an option! Type mushroom, box, or exit \
-if you are done here\n");
+	  my_putstr("[ERROR] Thats not an option! Type mushroom or box to buy \
+some. You can also type exit if you are done here\n");
       else
 	prompt_shop_cont(matrix, command);
       free(command);
@@ -58,7 +58,8 @@ void		prompt_shop_cont(t_matrix *matrix, char *command)
       i = i + 1;
     }
   if (bool == 0)
-    my_putstr("[ERROR] Thats not an option! \n");
+    my_putstr("[ERROR] Thats not an option! Type mushroom or box to buy \
+some. You can also type exit if you are done here\n");
 }
 
 int		buy_mushroom(t_matrix *matrix)
