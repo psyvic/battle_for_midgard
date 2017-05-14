@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 17:47:34 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 20:13:06 2017 PAREDES Alejandra
+** Last update Sun May 14 21:29:16 2017 PAREDES Alejandra
 */
 
 #include	<stdlib.h>
@@ -25,18 +25,15 @@ static const    t_prompt_oob   g_prompt_oob[] = {
 int		prompt_oob(t_matrix *matrix)
 {
   char		*command;
-  int		bool;
 
-  bool = 0;
-  while (bool == 0 && matrix->quit_prompt == 0)
+  while (matrix->quit_prompt == 0 && matrix->team->first != NULL)
     {
       my_putstr("oob_prompt?~> ");
       command = readLine();
       if (command == NULL)
 	my_putstr("[ERROR] Thats not an option! Type team, choose, mushroom, \
 shop, fight, quit to play\n");
-      else
-	if (prompt_oob_cont(matrix, command) == 0)
+      else if (prompt_oob_cont(matrix, command) == 0)
 	  return (0);
       free(command);
     }
@@ -45,25 +42,22 @@ shop, fight, quit to play\n");
 
 int		prompt_oob_cont(t_matrix *matrix, char *command)
 {
-  int		bool;
   int		i;
 
   i = 0;
-  bool = 0;
   while (g_prompt_oob[i].order != NULL)
     {
       if (my_strcmp(command, g_prompt_oob[i].order) == 0)
 	{
 	  if (g_prompt_oob[i].f(matrix) == 0)
 	    return (0);
-	  bool = 1;
+	  return (1);
 	}
       i = i + 1;
     }
-  if (bool == 0)
-	my_putstr("[ERROR] Thats not an option! Type team, choose, mushroom, \
+  my_putstr("[ERROR] Thats not an option! Type team, choose, mushroom, \
 shop, fight, quit to play\n");
-  return (1);
+  return (0);
 }
 
 int		team(t_matrix *matrix)
