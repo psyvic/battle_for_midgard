@@ -5,7 +5,7 @@
 ** Login   <aizpur_v@etna-alternance.net>
 ** 
 ** Started on  Wed May 10 10:11:23 2017 AIZPURUA Victor Hugo
-** Last update Sun May 14 23:14:13 2017 PAREDES Alejandra
+** Last update Sun May 14 23:28:04 2017 PAREDES Alejandra
 */
 
 #include <time.h>
@@ -23,6 +23,9 @@ int		main(int argc, char **argv)
       return (1);
     }
   srand(time(NULL));
+  my_putstr_color("yellow", "WELCOME ");
+  my_putstr_color("yellow", argv[2]);
+  my_putstr_color("yellow", " {Battle for Midgard}\n");
   matrix = create_matrix();
   create_team(matrix);
   create_player(matrix);
